@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureMind Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #14468C;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            font-family: 'Arial Black', 'Arial Bold', sans-serif;
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #4e73df, #5a8dea);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 115, 223, 0.4);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-item {
+            padding: 15px;
+            background: linear-gradient(135deg, #4e73df, #5a8dea);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .sidebar-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(78, 115, 223, 0.4);
+        }
+
+        .center-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .next-lesson-box {
+            background: linear-gradient(135deg, #4e73df, #5a8dea);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .next-lesson-title {
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .next-lesson-info {
+            font-size: 16px;
+        }
+
+        .chatbot-section {
+            background: #f5f7fa;
+            border: 3px dashed #ccc;
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-placeholder {
+            color: #999;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .chatbot-description {
+            color: #666;
+            font-size: 14px;
+            max-width: 500px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 18px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #4e73df;
+            box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+        }
+
+        .ask-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4e73df, #224abe);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .ask-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(78, 115, 223, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 180" class="logo-icon">
+                    <!-- Shield background -->
+                    <path fill="#14468C" d="M75,5 Q50,5 30,20 L30,100 Q30,140 75,170 Q120,140 120,100 L120,20 Q100,5 75,5 Z"/>
+                    
+                    <!-- White chevron -->
+                    <path fill="#FFFFFF" d="M35,90 L75,65 L115,90 L115,105 L75,80 L35,105 Z"/>
+                    
+                    <!-- Flower top left -->
+                    <ellipse fill="#FFFFFF" cx="52" cy="35" rx="4" ry="5" transform="rotate(-20 52 35)"/>
+                    <ellipse fill="#FFFFFF" cx="58" cy="33" rx="4" ry="5" transform="rotate(20 58 33)"/>
+                    <ellipse fill="#FFFFFF" cx="61" cy="40" rx="4" ry="5" transform="rotate(60 61 40)"/>
+                    <ellipse fill="#FFFFFF" cx="58" cy="47" rx="4" ry="5" transform="rotate(100 58 47)"/>
+                    <ellipse fill="#FFFFFF" cx="52" cy="45" rx="4" ry="5" transform="rotate(140 52 45)"/>
+                    <circle fill="#14468C" cx="56" cy="40" r="2.5"/>
+                    
+                    <!-- Top right crosses -->
+                    <g fill="#FFFFFF">
+                        <rect x="85" y="30" width="2" height="10"/>
+                        <rect x="81" y="34" width="10" height="2"/>
+                        
+                        <rect x="100" y="33" width="2" height="10"/>
+                        <rect x="96" y="37" width="10" height="2"/>
+                        
+                        <rect x="93" y="45" width="2" height="10"/>
+                        <rect x="89" y="49" width="10" height="2"/>
+                    </g>
+                    
+                    <!-- Bottom crosses (7 crosses) -->
+                    <g fill="#FFFFFF">
+                        <!-- Row 1 -->
+                        <rect x="52" y="115" width="2" height="8"/>
+                        <rect x="49" y="118" width="8" height="2"/>
+                        
+                        <rect x="68" y="120" width="2" height="8"/>
+                        <rect x="65" y="123" width="8" height="2"/>
+                        
+                        <rect x="84" y="120" width="2" height="8"/>
+                        <rect x="81" y="123" width="8" height="2"/>
+                        
+                        <rect x="100" y="115" width="2" height="8"/>
+                        <rect x="97" y="118" width="8" height="2"/>
+                        
+                        <!-- Row 2 -->
+                        <rect x="60" y="133" width="2" height="8"/>
+                        <rect x="57" y="136" width="8" height="2"/>
+                        
+                        <rect x="76" y="136" width="2" height="8"/>
+                        <rect x="73" y="139" width="8" height="2"/>
+                        
+                        <rect x="92" y="133" width="2" height="8"/>
+                        <rect x="89" y="136" width="8" height="2"/>
+                    </g>
+                </svg>
+                <div class="logo-text">
+                    LATYMER<br>
+                    UPPER SCHOOL
+                </div>
+            </div>
+        </div>
+
+        <div class="top-nav">
+            <button class="nav-btn">Calendar/Timetables</button>
+            <button class="nav-btn">FutureMind Setting</button>
+            <button class="nav-btn">Prepare for Exams</button>
+            <button class="nav-btn">Revision Resources</button>
+            <button class="nav-btn">Revision Websites</button>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar" id="searchHistory">
+                <div class="sidebar-item">SEARCH HISTORY</div>
+            </div>
+
+            <div class="center-section">
+                <div class="chatbot-section">
+                    <div class="chatbot-placeholder">Chatbot code will be integrated here</div>
+                    <div style="margin-top: 40px; width: 100%; max-width: 600px;">
+                        <input type="text" class="search-bar" id="searchInput" placeholder="HELLO ..... HOW CAN I HELP YOU TODAY?">
+                        <button class="ask-button" onclick="addSearch()">Ask Anything...</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="next-lesson-box">
+                    <div class="next-lesson-title">Next Lesson:</div>
+                    <div class="next-lesson-info">COMPUTING - 08 - 12:00</div>
+                </div>
+                <div class="sidebar-item">ATTENDANCE RECORDS</div>
+                <div class="sidebar-item">MINI MAP</div>
+                <div class="sidebar-item">MUSIC LESSONS</div>
+                <div class="sidebar-item">MY REPORTS</div>
+                <div class="sidebar-item">OLIVER</div>
+                <div class="sidebar-item">SPORT FIXTURES</div>
+                <div class="sidebar-item">SOCS</div>
+                <div class="sidebar-item">SUBJECT SITES</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load search history from memory
+        let searchHistory = [
+            'AN INSPECTOR CALLS',
+            'POPULATION GROWTH',
+            'IMPROVE THIS ESSAY',
+            'LIGHT & SOUND',
+            'PATHOGENS',
+            'AMPS VS VOLTS',
+            'NAMES FOR AI'
+        ];
+
+        function renderSearchHistory() {
+            const container = document.getElementById('searchHistory');
+            container.innerHTML = '<div class="sidebar-item">SEARCH HISTORY</div>';
+            
+            searchHistory.forEach(search => {
+                const item = document.createElement('div');
+                item.className = 'sidebar-item';
+                item.textContent = search;
+                item.onclick = () => {
+                    document.getElementById('searchInput').value = search;
+                };
+                container.appendChild(item);
+            });
+        }
+
+        function addSearch() {
+            const input = document.getElementById('searchInput');
+            const searchTerm = input.value.trim().toUpperCase();
+            
+            if (searchTerm && searchTerm !== 'HELLO ..... HOW CAN I HELP YOU TODAY?') {
+                // Remove if already exists
+                searchHistory = searchHistory.filter(item => item !== searchTerm);
+                // Add to beginning
+                searchHistory.unshift(searchTerm);
+                // Keep only last 10 searches
+                if (searchHistory.length > 10) {
+                    searchHistory.pop();
+                }
+                renderSearchHistory();
+            }
+            
+            // Here you would integrate with your OpenAI chatbot
+            console.log('Search submitted:', searchTerm);
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addSearch();
+            }
+        });
+
+        // Initial render
+        renderSearchHistory();
+    </script>
+</body>
+</html>
