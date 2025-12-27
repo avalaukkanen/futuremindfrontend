@@ -128,6 +128,14 @@
             box-shadow: 0 3px 10px rgba(78, 115, 223, 0.4);
         }
 
+        .sidebar-item.history-item {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+        }
+
+        .sidebar-item.history-item:hover {
+            box-shadow: 0 3px 10px rgba(108, 117, 125, 0.4);
+        }
+
         .center-section {
             display: flex;
             flex-direction: column;
@@ -394,14 +402,14 @@
                         <div class="next-lesson-title">Next Lesson:</div>
                         <div class="next-lesson-info">COMPUTING - 08 - 12:00</div>
                     </div>
-                    <div class="sidebar-item">ATTENDANCE RECORDS</div>
-                    <div class="sidebar-item">MINI MAP</div>
-                    <div class="sidebar-item">MUSIC LESSONS</div>
-                    <div class="sidebar-item">MY REPORTS</div>
-                    <div class="sidebar-item">OLIVER</div>
-                    <div class="sidebar-item">SPORT FIXTURES</div>
-                    <div class="sidebar-item">SOCS</div>
-                    <div class="sidebar-item">SUBJECT SITES</div>
+                    <div class="sidebar-item" onclick="showPage('attendancePage')">ATTENDANCE RECORDS</div>
+                    <div class="sidebar-item" onclick="showPage('miniMapPage')">MINI MAP</div>
+                    <div class="sidebar-item" onclick="window.open('https://www.socscms.com/login/161', '_blank')">MUSIC LESSONS</div>
+                    <div class="sidebar-item" onclick="showPage('reportsPage')">MY REPORTS</div>
+                    <div class="sidebar-item" onclick="window.open('https://latymer-upper.oliverasp.co.uk/library/home/news?SAMLResponse=&clientAlias=&time=&digest=&corporationAlias=latymerupper', '_blank')">OLIVER</div>
+                    <div class="sidebar-item" onclick="window.open('https://www.socscms.com/login/161', '_blank')">SPORT FIXTURES</div>
+                    <div class="sidebar-item" onclick="window.open('https://www.socscms.com/login/161', '_blank')">SOCS</div>
+                    <div class="sidebar-item" onclick="showPage('subjectSitesPage')">SUBJECT SITES</div>
                 </div>
             </div>
         </div>
@@ -479,6 +487,42 @@
                 <a href="https://studyrocket.co.uk/" target="_blank" class="resource-link">🚀 Study Rocket</a>
             </div>
         </div>
+
+        <!-- Attendance Records Page -->
+        <div id="attendancePage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Attendance Records</h1>
+                <p style="color: #666; font-size: 18px;">Content coming soon...</p>
+            </div>
+        </div>
+
+        <!-- Mini Map Page -->
+        <div id="miniMapPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Mini Map - Virtual Tour</h1>
+                <iframe src="https://www.latymer-upper.org/contact/virtual-tour/" style="width: 100%; height: 600px; border: none; border-radius: 10px; margin-top: 20px;"></iframe>
+            </div>
+        </div>
+
+        <!-- My Reports Page -->
+        <div id="reportsPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">My Reports</h1>
+                <p style="color: #666; font-size: 18px;">Content coming soon...</p>
+            </div>
+        </div>
+
+        <!-- Subject Sites Page -->
+        <div id="subjectSitesPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Subject Sites</h1>
+                <p style="color: #666; font-size: 18px;">Content coming soon...</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -542,7 +586,7 @@
             
             searchHistory.forEach(search => {
                 const item = document.createElement('div');
-                item.className = 'sidebar-item';
+                item.className = 'sidebar-item history-item';
                 item.textContent = search;
                 item.onclick = () => {
                     document.getElementById('searchInput').value = search;
