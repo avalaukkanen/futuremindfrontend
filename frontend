@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
             min-height: 100vh;
             padding: 20px;
+            transition: background 0.3s;
         }
 
         .container {
@@ -77,6 +78,24 @@
         .nav-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(78, 115, 223, 0.4);
+        }
+
+        .back-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
         }
 
         .main-content {
@@ -159,12 +178,6 @@
             margin-bottom: 15px;
         }
 
-        .chatbot-description {
-            color: #666;
-            font-size: 14px;
-            max-width: 500px;
-        }
-
         .search-bar {
             width: 100%;
             padding: 18px 25px;
@@ -200,6 +213,100 @@
             box-shadow: 0 5px 20px rgba(78, 115, 223, 0.4);
         }
 
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            min-height: 500px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            color: #14468C;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .color-option {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            margin: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: #333;
+        }
+
+        .color-option.selected {
+            border-color: #14468C;
+            box-shadow: 0 0 20px rgba(20, 70, 140, 0.5);
+        }
+
+        .resource-link {
+            display: block;
+            padding: 20px;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #4e73df, #5a8dea);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .resource-link:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(78, 115, 223, 0.4);
+        }
+
+        .channel-section {
+            margin: 30px 0;
+        }
+
+        .channel-title {
+            font-size: 24px;
+            color: #14468C;
+            margin: 20px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .sticky-note {
+            background: #fff740;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .sticky-note textarea {
+            width: 100%;
+            min-height: 200px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Comic Sans MS', cursive;
+            resize: vertical;
+        }
+
+        .sticky-note textarea:focus {
+            outline: none;
+        }
+
         @media (max-width: 1024px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -214,110 +321,168 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 180" class="logo-icon">
-                    <!-- Shield background -->
-                    <path fill="#14468C" d="M75,5 Q50,5 30,20 L30,100 Q30,140 75,170 Q120,140 120,100 L120,20 Q100,5 75,5 Z"/>
-                    
-                    <!-- White chevron -->
-                    <path fill="#FFFFFF" d="M35,90 L75,65 L115,90 L115,105 L75,80 L35,105 Z"/>
-                    
-                    <!-- Flower top left -->
-                    <ellipse fill="#FFFFFF" cx="52" cy="35" rx="4" ry="5" transform="rotate(-20 52 35)"/>
-                    <ellipse fill="#FFFFFF" cx="58" cy="33" rx="4" ry="5" transform="rotate(20 58 33)"/>
-                    <ellipse fill="#FFFFFF" cx="61" cy="40" rx="4" ry="5" transform="rotate(60 61 40)"/>
-                    <ellipse fill="#FFFFFF" cx="58" cy="47" rx="4" ry="5" transform="rotate(100 58 47)"/>
-                    <ellipse fill="#FFFFFF" cx="52" cy="45" rx="4" ry="5" transform="rotate(140 52 45)"/>
-                    <circle fill="#14468C" cx="56" cy="40" r="2.5"/>
-                    
-                    <!-- Top right crosses -->
-                    <g fill="#FFFFFF">
-                        <rect x="85" y="30" width="2" height="10"/>
-                        <rect x="81" y="34" width="10" height="2"/>
-                        
-                        <rect x="100" y="33" width="2" height="10"/>
-                        <rect x="96" y="37" width="10" height="2"/>
-                        
-                        <rect x="93" y="45" width="2" height="10"/>
-                        <rect x="89" y="49" width="10" height="2"/>
-                    </g>
-                    
-                    <!-- Bottom crosses (7 crosses) -->
-                    <g fill="#FFFFFF">
-                        <!-- Row 1 -->
-                        <rect x="52" y="115" width="2" height="8"/>
-                        <rect x="49" y="118" width="8" height="2"/>
-                        
-                        <rect x="68" y="120" width="2" height="8"/>
-                        <rect x="65" y="123" width="8" height="2"/>
-                        
-                        <rect x="84" y="120" width="2" height="8"/>
-                        <rect x="81" y="123" width="8" height="2"/>
-                        
-                        <rect x="100" y="115" width="2" height="8"/>
-                        <rect x="97" y="118" width="8" height="2"/>
-                        
-                        <!-- Row 2 -->
-                        <rect x="60" y="133" width="2" height="8"/>
-                        <rect x="57" y="136" width="8" height="2"/>
-                        
-                        <rect x="76" y="136" width="2" height="8"/>
-                        <rect x="73" y="139" width="8" height="2"/>
-                        
-                        <rect x="92" y="133" width="2" height="8"/>
-                        <rect x="89" y="136" width="8" height="2"/>
-                    </g>
-                </svg>
-                <div class="logo-text">
-                    LATYMER<br>
-                    UPPER SCHOOL
-                </div>
-            </div>
-        </div>
-
-        <div class="top-nav">
-            <button class="nav-btn">Calendar/Timetables</button>
-            <button class="nav-btn">FutureMind Setting</button>
-            <button class="nav-btn">Prepare for Exams</button>
-            <button class="nav-btn">Revision Resources</button>
-            <button class="nav-btn">Revision Websites</button>
-        </div>
-
-        <div class="main-content">
-            <div class="sidebar" id="searchHistory">
-                <div class="sidebar-item">SEARCH HISTORY</div>
-            </div>
-
-            <div class="center-section">
-                <div class="chatbot-section">
-                    <div class="chatbot-placeholder">Chatbot code will be integrated here</div>
-                    <div style="margin-top: 40px; width: 100%; max-width: 600px;">
-                        <input type="text" class="search-bar" id="searchInput" placeholder="HELLO ..... HOW CAN I HELP YOU TODAY?">
-                        <button class="ask-button" onclick="addSearch()">Ask Anything...</button>
+        <!-- Main Dashboard Page -->
+        <div id="mainPage" class="page active">
+            <div class="header">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 180" class="logo-icon">
+                        <path fill="#14468C" d="M75,5 Q50,5 30,20 L30,100 Q30,140 75,170 Q120,140 120,100 L120,20 Q100,5 75,5 Z"/>
+                        <path fill="#FFFFFF" d="M35,90 L75,65 L115,90 L115,105 L75,80 L35,105 Z"/>
+                        <ellipse fill="#FFFFFF" cx="52" cy="35" rx="4" ry="5" transform="rotate(-20 52 35)"/>
+                        <ellipse fill="#FFFFFF" cx="58" cy="33" rx="4" ry="5" transform="rotate(20 58 33)"/>
+                        <ellipse fill="#FFFFFF" cx="61" cy="40" rx="4" ry="5" transform="rotate(60 61 40)"/>
+                        <ellipse fill="#FFFFFF" cx="58" cy="47" rx="4" ry="5" transform="rotate(100 58 47)"/>
+                        <ellipse fill="#FFFFFF" cx="52" cy="45" rx="4" ry="5" transform="rotate(140 52 45)"/>
+                        <circle fill="#14468C" cx="56" cy="40" r="2.5"/>
+                        <g fill="#FFFFFF">
+                            <rect x="85" y="30" width="2" height="10"/>
+                            <rect x="81" y="34" width="10" height="2"/>
+                            <rect x="100" y="33" width="2" height="10"/>
+                            <rect x="96" y="37" width="10" height="2"/>
+                            <rect x="93" y="45" width="2" height="10"/>
+                            <rect x="89" y="49" width="10" height="2"/>
+                        </g>
+                        <g fill="#FFFFFF">
+                            <rect x="52" y="115" width="2" height="8"/>
+                            <rect x="49" y="118" width="8" height="2"/>
+                            <rect x="68" y="120" width="2" height="8"/>
+                            <rect x="65" y="123" width="8" height="2"/>
+                            <rect x="84" y="120" width="2" height="8"/>
+                            <rect x="81" y="123" width="8" height="2"/>
+                            <rect x="100" y="115" width="2" height="8"/>
+                            <rect x="97" y="118" width="8" height="2"/>
+                            <rect x="60" y="133" width="2" height="8"/>
+                            <rect x="57" y="136" width="8" height="2"/>
+                            <rect x="76" y="136" width="2" height="8"/>
+                            <rect x="73" y="139" width="8" height="2"/>
+                            <rect x="92" y="133" width="2" height="8"/>
+                            <rect x="89" y="136" width="8" height="2"/>
+                        </g>
+                    </svg>
+                    <div class="logo-text">
+                        LATYMER<br>
+                        UPPER SCHOOL
                     </div>
                 </div>
             </div>
 
-            <div class="sidebar">
-                <div class="next-lesson-box">
-                    <div class="next-lesson-title">Next Lesson:</div>
-                    <div class="next-lesson-info">COMPUTING - 08 - 12:00</div>
+            <div class="top-nav">
+                <button class="nav-btn" onclick="showPage('calendarPage')">Calendar/Timetables</button>
+                <button class="nav-btn" onclick="showPage('settingsPage')">FutureMind Setting</button>
+                <button class="nav-btn" onclick="showPage('examsPage')">Prepare for Exams</button>
+                <button class="nav-btn" onclick="showPage('resourcesPage')">Revision Resources</button>
+                <button class="nav-btn" onclick="showPage('websitesPage')">Revision Websites</button>
+            </div>
+
+            <div class="main-content">
+                <div class="sidebar" id="searchHistory">
+                    <div class="sidebar-item">SEARCH HISTORY</div>
                 </div>
-                <div class="sidebar-item">ATTENDANCE RECORDS</div>
-                <div class="sidebar-item">MINI MAP</div>
-                <div class="sidebar-item">MUSIC LESSONS</div>
-                <div class="sidebar-item">MY REPORTS</div>
-                <div class="sidebar-item">OLIVER</div>
-                <div class="sidebar-item">SPORT FIXTURES</div>
-                <div class="sidebar-item">SOCS</div>
-                <div class="sidebar-item">SUBJECT SITES</div>
+
+                <div class="center-section">
+                    <div class="chatbot-section">
+                        <div class="chatbot-placeholder">Chatbot code will be integrated here</div>
+                        <div style="margin-top: 40px; width: 100%; max-width: 600px;">
+                            <input type="text" class="search-bar" id="searchInput" placeholder="HELLO ..... HOW CAN I HELP YOU TODAY?">
+                            <button class="ask-button" onclick="addSearch()">Ask Anything...</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="next-lesson-box">
+                        <div class="next-lesson-title">Next Lesson:</div>
+                        <div class="next-lesson-info">COMPUTING - 08 - 12:00</div>
+                    </div>
+                    <div class="sidebar-item">ATTENDANCE RECORDS</div>
+                    <div class="sidebar-item">MINI MAP</div>
+                    <div class="sidebar-item">MUSIC LESSONS</div>
+                    <div class="sidebar-item">MY REPORTS</div>
+                    <div class="sidebar-item">OLIVER</div>
+                    <div class="sidebar-item">SPORT FIXTURES</div>
+                    <div class="sidebar-item">SOCS</div>
+                    <div class="sidebar-item">SUBJECT SITES</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar/Timetables Page -->
+        <div id="calendarPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Calendar & Timetables</h1>
+                <p style="color: #666; font-size: 18px;">Content coming soon...</p>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settingsPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">FutureMind Settings</h1>
+                <h2 style="font-size: 24px; margin: 20px 0; color: #333;">Choose Background Color:</h2>
+                <div style="margin-top: 30px;">
+                    <div class="color-option selected" style="background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);" onclick="changeColor('blue')" title="Blue (Default)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" onclick="changeColor('purple')" title="Purple"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" onclick="changeColor('pink')" title="Pink"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="changeColor('cyan')" title="Cyan"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);" onclick="changeColor('green')" title="Green"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);" onclick="changeColor('orange')" title="Orange"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);" onclick="changeColor('teal')" title="Teal"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);" onclick="changeColor('pastel')" title="Pastel"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prepare for Exams Page -->
+        <div id="examsPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Prepare for Exams</h1>
+                
+                <h2 style="font-size: 24px; margin: 20px 0; color: #333;">Recommended Study Videos:</h2>
+                <a href="https://www.youtube.com/watch?v=TjPFZaMe2yw" target="_blank" class="resource-link">📹 How to Study Effectively</a>
+                <a href="https://www.youtube.com/watch?v=6oyKH5WVE3U" target="_blank" class="resource-link">📹 Exam Preparation Tips</a>
+                <a href="https://www.youtube.com/watch?v=mLhwdITTrfE" target="_blank" class="resource-link">📹 Memory Techniques</a>
+
+                <div class="channel-section">
+                    <h2 class="channel-title">📚 Recommended Channels:</h2>
+                    <a href="https://www.youtube.com/@mrbruff" target="_blank" class="resource-link">Mr Bruff - English Literature & Language</a>
+                    <a href="https://www.youtube.com/@1stClassMaths" target="_blank" class="resource-link">1st Class Maths - Mathematics</a>
+                </div>
+
+                <div class="sticky-note">
+                    <h3 style="margin-bottom: 15px; color: #333;">📝 Future Exams & Notes:</h3>
+                    <textarea id="examNotes" placeholder="Write your upcoming exams and notes here..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revision Resources Page -->
+        <div id="resourcesPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Revision Resources</h1>
+                <a href="https://www.physicsandmathstutor.com/" target="_blank" class="resource-link">📚 Physics & Maths Tutor</a>
+                <a href="https://corbettmaths.com/" target="_blank" class="resource-link">📐 Corbett Maths</a>
+            </div>
+        </div>
+
+        <!-- Revision Websites Page -->
+        <div id="websitesPage" class="page">
+            <button class="back-btn" onclick="showPage('mainPage')">← Back to Dashboard</button>
+            <div class="page-content">
+                <h1 class="page-title">Revision Websites</h1>
+                <a href="https://senecalearning.com/en-GB/" target="_blank" class="resource-link">🎓 Seneca Learning</a>
+                <a href="https://www.bbc.co.uk/bitesize" target="_blank" class="resource-link">📺 BBC Bitesize</a>
+                <a href="https://www.savemyexams.com/" target="_blank" class="resource-link">💾 Save My Exams</a>
+                <a href="https://studyrocket.co.uk/" target="_blank" class="resource-link">🚀 Study Rocket</a>
             </div>
         </div>
     </div>
 
     <script>
-        // Load search history from memory
+        // Search history
         let searchHistory = [
             'AN INSPECTOR CALLS',
             'POPULATION GROWTH',
@@ -328,6 +493,49 @@
             'NAMES FOR AI'
         ];
 
+        // Color schemes
+        const colorSchemes = {
+            blue: 'linear-gradient(135deg, #4e73df 0%, #224abe 100%)',
+            purple: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            pink: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            cyan: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            green: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            orange: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            teal: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+            pastel: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
+        };
+
+        // Load saved data
+        function loadData() {
+            const savedColor = localStorage.getItem('bgColor') || 'blue';
+            changeColor(savedColor);
+            
+            const savedNotes = localStorage.getItem('examNotes');
+            if (savedNotes) {
+                document.getElementById('examNotes').value = savedNotes;
+            }
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Change background color
+        function changeColor(color) {
+            document.body.style.background = colorSchemes[color];
+            localStorage.setItem('bgColor', color);
+            
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        // Search history functions
         function renderSearchHistory() {
             const container = document.getElementById('searchHistory');
             container.innerHTML = '<div class="sidebar-item">SEARCH HISTORY</div>';
@@ -348,30 +556,35 @@
             const searchTerm = input.value.trim().toUpperCase();
             
             if (searchTerm && searchTerm !== 'HELLO ..... HOW CAN I HELP YOU TODAY?') {
-                // Remove if already exists
                 searchHistory = searchHistory.filter(item => item !== searchTerm);
-                // Add to beginning
                 searchHistory.unshift(searchTerm);
-                // Keep only last 10 searches
                 if (searchHistory.length > 10) {
                     searchHistory.pop();
                 }
                 renderSearchHistory();
             }
-            
-            // Here you would integrate with your OpenAI chatbot
-            console.log('Search submitted:', searchTerm);
         }
 
-        // Allow Enter key to submit
+        // Save exam notes
+        document.addEventListener('DOMContentLoaded', function() {
+            const examNotesTextarea = document.getElementById('examNotes');
+            if (examNotesTextarea) {
+                examNotesTextarea.addEventListener('input', function() {
+                    localStorage.setItem('examNotes', this.value);
+                });
+            }
+        });
+
+        // Enter key support
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 addSearch();
             }
         });
 
-        // Initial render
+        // Initialize
         renderSearchHistory();
+        loadData();
     </script>
 </body>
 </html>
